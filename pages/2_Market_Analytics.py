@@ -82,7 +82,7 @@ with tab2:
 
     st.subheader("Property Locations")
 
-    fig = px.scatter_mapbox(
+    fig = px.scatter_map(
         Analytics_df,
         lat="latitude",
         lon="longitude",
@@ -95,7 +95,7 @@ with tab2:
         color_continuous_scale="Turbo"
     )
 
-    fig.update_layout(mapbox_style="open-street-map")
+    fig.update_layout(map_style="open-street-map")
 
     st.plotly_chart(fig)
 
