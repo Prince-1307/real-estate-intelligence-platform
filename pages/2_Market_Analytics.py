@@ -95,7 +95,9 @@ with tab2:
         color_continuous_scale="Turbo"
     )
 
-    fig.update_layout(map_style="open-street-map")
+    fig.update_layout(map_style="open-street-map", map=dict(
+        fitbounds="locations"
+    ) )
 
     st.plotly_chart(fig)
 
