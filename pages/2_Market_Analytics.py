@@ -82,22 +82,35 @@ with tab2:
 
     st.subheader("Property Locations")
 
-    fig = px.scatter_map(
-        Analytics_df,
-        lat="latitude",
-        lon="longitude",
-        color="price_per_sqft",
-        size="price",
-        hover_name="sector",
-        zoom=10,
-        height=600,
-        width=600,
-        color_continuous_scale="Turbo"
-    )
+    lat_min = Analytics_df["latitude"].min()
+    lat_max = Analytics_df["latitude"].max()
+    lon_min = Analytics_df["longitude"].min()
+    lon_max = Analytics_df["longitude"].max()
 
-    fig.update_layout(map_style="open-street-map", map=dict(
-        fitbounds="locations"
-    ) )
+    center_lat = (lat_min + lat_max) / 2
+    center_lon = (lon_min + lon_max) / 2
+
+    fig = px.scatter_map(
+    Analytics_df,
+    lat="latitude",
+    lon="longitude",
+    color="price_per_sqft",
+    size="price",
+    hover_name="sector",
+    height=600,
+    width=600,
+    color_continuous_scale="Turbo"
+    )
+    
+    fig.update_layout(
+        map=dict(
+            center=dict(
+                lat=center_lat,
+                lon=center_lon
+            ),
+            zoom=10
+        )
+    )
 
     st.plotly_chart(fig, use_container_width=True)
 
