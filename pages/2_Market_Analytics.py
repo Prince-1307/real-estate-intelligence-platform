@@ -99,7 +99,7 @@ with tab2:
         fitbounds="locations"
     ) )
 
-    st.plotly_chart(fig)
+    st.plotly_chart(fig, use_container_width=True)
 
     sector = st.selectbox(
         "Select Sector",
